@@ -1,0 +1,3 @@
+---
+string[] occupancy_grid_flattened
+uint8[<=2] occupancy_grid_shape
