@@ -16,10 +16,7 @@
 
 using namespace std::chrono_literals;
 
-/* ==========================================================
-   DEFINIÇÕES DE GRID E DIREÇÕES
-   ========================================================== */
-
+// DEFINIÇÕES DE GRID E DIREÇÕES
 enum class Direction { UP, DOWN, LEFT, RIGHT };
 
 struct Cell {
@@ -50,9 +47,7 @@ bool is_wall(const std::string &cell)   { return cell == "b"; }
 bool is_free(const std::string &cell)   { return cell == "f"; }
 bool is_target(const std::string &cell) { return cell == "t"; }
 
-/* ==========================================================
-   BFS PARA ENCONTRAR O CAMINHO OTIMIZADO
-   ========================================================== */
+// BFS PARA ENCONTRAR O CAMINHO OTIMIZADO
 
 std::vector<Direction> reconstruct_path(
     Cell start,
@@ -133,9 +128,7 @@ std::vector<Direction> bfs_find_path(
     return reconstruct_path(start, goal, parent);
 }
 
-/* ==========================================================
-   NÓ ROS2 - MAPEAMENTO E NAVEGAÇÃO
-   ========================================================== */
+// NÓ ROS2 - MAPEAMENTO E NAVEGAÇÃO
 
 class MazeMapper : public rclcpp::Node {
 public:
@@ -391,12 +384,12 @@ private:
             Cell old_pos = current_pos_;
             current_pos_ = {(int)resp->robot_pos[0], (int)resp->robot_pos[1]};
             
-            // ✅ CONFIRMAR que célula destino é livre (EXCETO se for o target!)
+            // CONFIRMAR que célula destino é livre (EXCETO se for o target!)
             if (!(target_cell.row == target_pos_.row && target_cell.col == target_pos_.col)) {
                 map_[target_cell] = "f";
             }
             
-            // ✅ CONFIRMAR que célula atual também é livre (EXCETO se for o target!)
+            // CONFIRMAR que célula atual também é livre (EXCETO se for o target!)
             if (!(current_pos_.row == target_pos_.row && current_pos_.col == target_pos_.col)) {
                 map_[current_pos_] = "f";
             } else {
@@ -420,7 +413,7 @@ private:
             return true;
         }
         
-        // ❌ Movimento falhou - CONFIRMAR que é parede
+        // Movimento falhou - CONFIRMAR que é parede
         RCLCPP_DEBUG(this->get_logger(), 
                     "❌ Bloqueado tentando ir para (%d,%d)", 
                     target_cell.row, target_cell.col);

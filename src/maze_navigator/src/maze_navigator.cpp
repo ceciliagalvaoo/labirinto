@@ -11,9 +11,7 @@
 
 using namespace std::chrono_literals;
 
-/* ==========================================================
-   DEFINIÇÕES DE GRID E DIREÇÕES
-   ========================================================== */
+// DEFINIÇÕES DE GRID E DIREÇÕES
 
 enum class Direction { UP, DOWN, LEFT, RIGHT };
 
@@ -31,9 +29,8 @@ struct ParentInfo {
 bool is_wall(const std::string &cell)   { return cell == "b"; }
 bool is_free(const std::string &cell)   { return cell == "f"; }
 
-/* ==========================================================
-   BFS PARA ENCONTRAR O CAMINHO OTIMIZADO
-   ========================================================== */
+
+// BFS PARA ENCONTRAR O CAMINHO OTIMIZADO 
 
 std::vector<Direction> reconstruct_path(
     Cell start,
@@ -124,9 +121,7 @@ std::vector<Direction> bfs_find_path(
     return reconstruct_path(start, goal, parent);
 }
 
-/* ==========================================================
-   NÓ ROS2 (chama /get_map, /move_command e executa a rota)
-   ========================================================== */
+// NÓ ROS2 (chama /get_map, /move_command e executa a rota)
 
 class MazeNavigator : public rclcpp::Node {
 public:
