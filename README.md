@@ -79,7 +79,7 @@ Em outro terminal (com o simulador (`cg maze`) ainda rodando):
 
 ```bash
 source install/setup.bash
-ros2 run maze_navigator maze_mapper
+ros2 run maze_navigator maze_mapper_node
 ```
 
 O nó da Parte 2 será responsável por:
