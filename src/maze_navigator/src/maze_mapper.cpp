@@ -184,10 +184,12 @@ public:
         // Criar cliente para o serviço de reset
         reset_client_ = this->create_client<cg_interfaces::srv::Reset>("/reset");
         
-        // Criar subscrição ao tópico de sensores do robô
+        // Criar subscrição ao tópico de sensores do robô com QoS SensorData
+        // O QoS SensorData descarta valores antigos com mais frequência e mantém latência baixa
+        rclcpp::QoS qos_profile = rclcpp::SensorDataQoS();
         sensor_sub_ = this->create_subscription<cg_interfaces::msg::RobotSensors>(
             "/culling_games/robot_sensors",
-            10,  // Tamanho da fila
+            qos_profile,  // Usar QoS SensorData (otimizado para 100Hz)
             std::bind(&MazeMapper::sensor_callback, this, std::placeholders::_1)  // Callback
         );
         
@@ -346,7 +348,8 @@ private:
     
     // Função para atualizar dados dos sensores
     void update_sensors() {
-        rclcpp::sleep_for(150ms);  // Esperar 150ms para sensores atualizarem
+        // Com 100Hz (10ms por mensagem), aguardar tempo suficiente para dados atualizados
+        rclcpp::sleep_for(300ms);  // Esperar 300ms para sensores atualizarem
         rclcpp::spin_some(shared_from_this());  // Processar callbacks (inclui sensor_callback)
         rclcpp::spin_some(shared_from_this());  // Processar novamente para garantir
     }

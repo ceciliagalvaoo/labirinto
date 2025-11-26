@@ -4,8 +4,8 @@ Este projeto implementa o **Desafio de Navegação Autônoma** proposto na disci
 
 O trabalho está dividido em **duas partes**, conforme o enunciado:
 
-- **Parte 1:** Navegação com mapa conhecido (planejamento global com BFS).  
-- **Parte 2:** Exploração com sensores (DFS), construção de mapa próprio e navegação com BFS usando esse mapa aprendido.
+- **Parte 1:** Navegação com mapa conhecido (planejamento global com BFS). LINK VÍDEO DEMOSTRAÇÃO PARTE 1: [clique aqui](https://drive.google.com/file/d/1siSN_-V2bbscIFCzZBmw6OCmkGI52D1X/view?usp=sharing)  
+- **Parte 2:** Exploração com sensores (DFS), construção de mapa próprio e navegação com BFS usando esse mapa aprendido. LINK VÍDEO DEMONSTRAÇÃO PARTE 2: [clique aqui](https://drive.google.com/file/d/1GB_u7ggUbks9aObr0WANGe2a0R3XrjCv/view?usp=sharing)
 
 
 ## Contexto do Problema
